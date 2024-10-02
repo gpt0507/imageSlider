@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container img {
+      height: 100vh;
+      width: 100%;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    .fa-chevron-left,
+    .fa-chevron-right {
+      position: absolute;
+      top: 50%;
+      font-size: 42px;
+      color: lightgrey;
+      text-shadow: 3px 0px 10px white;
+    }
+
+    .fa-chevron-left {
+      left: 140px;
+    }
+
+    .fa-chevron-right {
+      right: 140px;
+    }
+
+    .fa-chevron-left:hover,
+    .fa-chevron-right:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src='https://cdn.pixabay.com/photo/2018/08/04/11/30/draw-3583548_1280.png' id="image">
+    <i class="fa-solid fa-chevron-left"></i>
+    <i class="fa-solid fa-chevron-right"></i>
+  </div>
+
+
+
+  <script>
+    const image = document.getElementById('image');
+    const left = document.querySelector('.fa-chevron-left');
+    const right = document.querySelector('.fa-chevron-right');
+
+    let current = 0;
+    let images = [
+      "https://cdn.pixabay.com/photo/2018/08/04/11/30/draw-3583548_1280.png",
+      "https://cdn.pixabay.com/photo/2020/04/08/08/08/spring-5016266_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/07/07/12/34/lime-2481358_1280.jpg",
+      "https://cdn.pixabay.com/photo/2016/06/16/03/49/befall-the-earth-quote-1460570_1280.jpg",
+      "https://media.istockphoto.com/id/1130393027/photo/thanks-for-watching-alphabet-on-background.jpg?s=1024x1024&w=is&k=20&c=PcYkwYyKCeXhsMT1auMcwu4eRU0XKm-HEsRkWCUDZJ4="
+    ];
+
+    let intervalId = setInterval(() => {
+      current = (current + 1) % images.length;
+      image.src = images[current];
+    }, 2000);
+
+    left.addEventListener('click', () => {
+      if (current == 0)
+        current = images.length
+      console.log("current is", current)
+
+      current = (current - 1) % images.length;
+      image.src = images[current];
+      console.log("now current is", current)
+    })
+
+    right.addEventListener('click', () => {
+      console.log("current is", current)
+      current = (current + 1) % images.length;
+      image.src = images[current];
+      console.log("now current is", current)
+    })
+
+  </script>
+</body>
+
+</html>
